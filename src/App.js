@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import GlobalState from 'context/GlobalState';
+import LoginForm from 'pages/LoginPage';
+import ItemsList from 'pages/ItemsList';
+import CreateItem from 'pages/CreateItem';
+import GenericNotFound from 'pages/GenericNotFound'
 
-function App() {
+const  App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalState>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" component={LoginForm} exact />
+            <Route path="/items" component={ItemsList}   />
+            <Route path="/create" component={CreateItem}  /> 
+            <Route path="/edit/:id" component={CreateItem}  /> 
+            <Route component={GenericNotFound} />
+          </Switch>
+        </BrowserRouter>
+      </GlobalState>
   );
 }
 
