@@ -8,12 +8,14 @@ import ItemsList from 'pages/ItemsList';
 import CreateItem from 'pages/CreateItem'
 import MutationObserver from 'mutation-observer'
 import GenericNotFound from 'pages/GenericNotFound';
+import ItemsContext from 'context/items-context';
 
 global.MutationObserver = MutationObserver
 
 configure({adapter: new Adapter()});
 
 describe('main app', () => {
+  
     
   test('route for login page', () => {
     const wrapper = mount(
@@ -27,7 +29,14 @@ describe('main app', () => {
   test('route for items list', () => {
     const wrapper = mount(
       <MemoryRouter initialEntries={[ '/items' ]}>
+         <ItemsContext.Provider
+            value={{
+              items:[],
+              userName:'admin'
+            }}
+          >
         <App/>
+        </ItemsContext.Provider>
       </MemoryRouter>
     );
   
@@ -55,7 +64,7 @@ describe('main app', () => {
         <App/>
       </MemoryRouter>
     );
-    console.log(wrapper.debug())
+    
     expect(wrapper.find(GenericNotFound)).toHaveLength(1);
   });
   

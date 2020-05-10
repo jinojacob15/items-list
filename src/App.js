@@ -9,7 +9,6 @@ import GenericNotFound from 'pages/GenericNotFound'
 const  App = () => {
   return (
     <GlobalState>
-        <BrowserRouter>
           <Switch>
             <Route path="/" component={LoginForm} exact />
             <Route path="/items" component={ItemsList}   />
@@ -17,7 +16,6 @@ const  App = () => {
             <Route path="/edit/:id" component={CreateItem}  /> 
             <Route component={GenericNotFound} />
           </Switch>
-        </BrowserRouter>
       </GlobalState>
   );
 }
