@@ -15,8 +15,8 @@ const ItemsTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.items.length === 0 ?(<tr className="text-center"><td>No items to show</td></tr>):( props.items.map((data,index)=>
-        <TableDataComponent index={index} data={data} conFirmDelete={props.conFirmDelete} disabled={props.disabled} />))}
+        {props.items.length === 0 ?(<tr className="text-center"><td>No items to show</td></tr>):( 
+        <TableDataComponent  data={props.items} conFirmDelete={props.conFirmDelete} disabled={props.disabled} />)}
       </tbody>
     </Table>
       </div>

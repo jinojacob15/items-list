@@ -1,4 +1,4 @@
-import React, {useContext,useEffect, useState } from 'react';
+import React, {useContext, useState } from 'react';
 import { Container, Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import SweetAlert from 'react-bootstrap-sweetalert';
@@ -12,11 +12,11 @@ const ItemsList = (props) => {
     const[alert,setAlert]=useState(null)
     const context = useContext(ItemsContext);
      
-    useEffect(()=>{
-        if(!context.userName){
-           props.history.push("/")
-        }
-    },[context.userName,props.history])
+    // useEffect(()=>{
+    //     if(!context.userName){
+    //        props.history.push("/")
+    //     }
+    // },[context.userName,props.history])
 
     const  conFirmDelete = id=> {
            const alert = (<SweetAlert

@@ -7,18 +7,18 @@ const CreateItem = (props) => {
      const [defaultValues,setDefaultValues]=useState({})
     const context = useContext(ItemsContext);
 
-
-    useEffect(()=>{
-        if(!context.userName){
-           props.history.push("/")
-        }
-    },[context.userName,props.history])
+    // useEffect(()=>{
+    //     if(!context.userName){
+    //        props.history.push("/")
+    //     }
+    // },[context.userName,props.history])
 
     useEffect(()=>{
         const itemId=props.match.params.id
         if(itemId){
             const items = [...context.items]
             const edititem = items.filter(item => item.id===parseInt(itemId))[0]
+            if(edititem)
             setDefaultValues(edititem)
         }
        

@@ -1,5 +1,5 @@
 import React from 'react';
-import {configure,mount} from 'enzyme'
+import {configure,mount,shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router';
 import App from './App';
@@ -8,7 +8,7 @@ import ItemsList from 'pages/ItemsList';
 import CreateItem from 'pages/CreateItem'
 import MutationObserver from 'mutation-observer'
 import GenericNotFound from 'pages/GenericNotFound';
-import ItemsContext from 'context/items-context';
+
 
 global.MutationObserver = MutationObserver
 
@@ -28,16 +28,11 @@ describe('main app', () => {
   });
   test('route for items list', () => {
     const wrapper = mount(
+
       <MemoryRouter initialEntries={[ '/items' ]}>
-         <ItemsContext.Provider
-            value={{
-              items:[],
-              userName:'admin'
-            }}
-          >
         <App/>
-        </ItemsContext.Provider>
       </MemoryRouter>
+      
     );
   
     expect(wrapper.find(ItemsList)).toHaveLength(1);
@@ -56,6 +51,7 @@ describe('main app', () => {
         <App/>
       </MemoryRouter>
     );
+
     expect(wrapper.find(CreateItem)).toHaveLength(1);
   });
   test('not found', () => {
