@@ -5,6 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import ItemsContext from 'context/items-context';
 import ItemsTable from 'components/ItemsTable'
 import Header from 'components/Header';
+import SearchComponent from 'components/SearchComponent';
 
 
 const colomns =['Id','#','Title','Date','Status','Description','Actions']
@@ -12,12 +13,6 @@ const ItemsList = (props) => {
     const[alert,setAlert]=useState(null)
     const context = useContext(ItemsContext);
      
-    // useEffect(()=>{
-    //     if(!context.userName){
-    //        props.history.push("/")
-    //     }
-    // },[context.userName,props.history])
-
     const  conFirmDelete = id=> {
            const alert = (<SweetAlert
             warning
@@ -60,6 +55,7 @@ const ItemsList = (props) => {
                 <div className="text-right" >
                   <Link to='/create'> <Button disabled={context.userName!=='admin'} color="success">Create Item</Button></Link> 
                 </div>
+                <SearchComponent />
                 {items.length} items 
                 <ItemsTable colomns={colomns} items={items}  conFirmDelete={conFirmDelete} disabled={context.userName!=='admin'} />
                 {alert}
